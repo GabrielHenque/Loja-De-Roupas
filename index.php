@@ -45,21 +45,23 @@
         
 
         <div id="inicio-dados">
-            <h1>Você está na Loja de Roupas</h1>
+            <h1>Você está na Drop</h1>
 
             <h2>Sua Loja preferida de Roupas Streetwear</h2>
 
             <br><br>
 
-            <p>Veja as Melhores</p>
+            <p>Veja os Melhores Drops</p>
             
         </div>
 
     </div>
+
+            <!-- Conteudo Principal do Site -->
     
         <main>
             
-                <br><br><br><br><br><br><br><br>
+                <br><br><br><br><br><br><br><br><br><br>
             
         </main>
         
@@ -80,15 +82,13 @@
                         Empresas
                     </li>
                     <li class="footer-menu-item">
-                        For the record
+                        For the License
                     </li>
                 </ul>
     
                 <ul class="footer-menu">
                     <p>Comunidades</p>
-                    <li class="footer-menu-item">
-                        Para Artistas
-                    </li>
+                    
                     <li class="footer-menu-item">
                         Desenvolvedores
                     </li>
@@ -110,10 +110,10 @@
                         Ajuda
                     </li>
                     <li class="footer-menu-item">
-                        Player da Web
+                        DROP Chat Bot
                     </li>
                     <li class="footer-menu-item">
-                        Aplicativo Móvel Grátis
+                        Contato Suporte
                     </li>
                 </ul>
     
