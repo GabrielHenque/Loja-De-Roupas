@@ -52,19 +52,73 @@
             <br><br>
 
             <p>Veja os Melhores Drops</p>
-            
-        </div>
 
+            <br><br>
+            <hr>
+
+        </div>
+        
     </div>
+
+    
 
             <!-- Conteudo Principal do Site -->
     
-        <main>
+        <main class="justify-content-center" >
             
-                <br><br><br><br><br><br><br><br><br><br>
+                <br><br>
+
+            <div id="top-musicas">
+                <h1>Principais Produtos</h1>
+
+                <h2>Da Semana</h2>
+
+                <p>Curta os Melhores</p>
+                
+            </div>
+
+    <div class="container-conteudo-principal">
+
+    <ul class="top-artists" id="artistList">
+        <li>
+            <div class="artist-image">
+                <a href="#" target="_blank"><img src="img/japa.jpg" alt="Japa" class="artist-image"></a>
+            </div>
+            <div class="artist-name">Produto 1</div>
+        </li>
+        <li>
+            <div class="artist-image">
+                 <a href="#" target="_blank"><img src="img/Ryu the runner.jfif" alt="Ryu The Runner" class="artist-image"></a>
+            </div>
+            <div class="artist-name">Produto 2</div>
+        </li>
+        <li>
+            <div class="artist-image">
+                <a href="#" target="_blank"><img src="img/pumapjl.jpg" alt="Pumapjl" class="artist-image"></a>
+            </div>
+            <div class="artist-name">Produto 3</div>
+        </li>
+        <li>
+            <div class="artist-image">
+                <a href="#" target="_blank"><img src="img/veigh.jfif" alt="Veigh" class="artist-image"></a>
+            </div>
+            <div class="artist-name">Produto 4</div>
+        </li>
+        <li>
+            <div class="artist-image">
+                <a href="#" target="_blank"><img src="img/yunk vino.jpg" alt="Yunk Vino" class="artist-image"></a>
+            </div>
+            <div class="artist-name">Produto 5</div>
+        </li>
+        <!-- Adicione mais itens da lista com imagens e nomes de artistas -->
+    </ul>
+
+    <br><br><br><br>
+
+                
 
             <div>
-                <a href="p" style="position:fixed;width:60px;height:60px;bottom:40px;right:40px;background-color:#25d366;color:#FFF;border-radius:50px;text-align:center;font-size:30px;box-shadow: 1px 1px 2px #888;
+                <a href="" style="position:fixed;width:60px;height:60px;bottom:40px;right:40px;background-color:#25d366;color:#FFF;border-radius:50px;text-align:center;font-size:30px;box-shadow: 1px 1px 2px #888;
                 z-index:1000;" target="_blank">
                 <i style="margin-top:16px" class="fa fa-whatsapp"></i>
                 </a>
