@@ -226,6 +226,54 @@ header {
 
 
 
+    /* CSS Thigas */
+
+
+.product-card {
+    background-color: #2e2b5f;
+    border: 1px solid #3a3772;
+    border-radius: 8px;
+    margin: 10px;
+    width: 300px;
+    padding: 20px;
+    text-align: center;
+    transition: transform 0.2s;
+}
+
+.product-card:hover {
+    transform: scale(1.05);
+}
+
+.product-card img {
+    max-width: 100%;
+    border-radius: 8px;
+}
+
+.product-card h2 {
+    color: #f3f3f3;
+    font-size: 1.5em;
+    margin: 15px 0 10px;
+}
+
+.product-card p {
+    font-size: 1em;
+    color: #ccc;
+    margin: 10px 0;
+}
+
+.product-card .price {
+    font-size: 1.2em;
+    color: #f39c12;
+    margin-bottom: 15px;
+}
+
+
+
+
+
+
+
+
 #creditos {
     /* display: flex; */
     background-color: rgb(22, 22, 22);

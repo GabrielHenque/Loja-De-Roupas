@@ -3,7 +3,7 @@ $servername = "localhost";
 $username = "root";
 $password = "";
 // alterar a var database de acordo com o projeto
-$database = "db_meio_ambiente";
+$database = "db_loja";
 // apenas alteramos as var acima para conexao do banco, o restante do codigo e padrão
 
 // --------------- --------------- --------------- --------------- --------------

@@ -1,3 +1,26 @@
+<?php
+
+try {
+
+    include "backend/conexao.php";
+
+    $sql = "SELECT * FROM produtos";
+
+    $stmt = $conn->prepare($sql);
+
+    $stmt->execute();
+
+    $menu = $stmt->fetchAll((PDO::FETCH_ASSOC));
+
+
+} catch (PDOException $err) {
+    echo "Erro ao conectar ao banco de dados: " . $err->getMessage();
+}
+
+?>
+
+
+
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -79,11 +102,11 @@
 
             </div>
 
-            <br> 
+            <br>
 
-            <div class="container-conteudo-principal">
+            <div class="container container-conteudo-principal">
 
-                <div class="row row-cols-1 row-cols-md-3 g-4">
+                <!-- <div class="row row-cols-1 row-cols-md-3 g-4">
                     <div class="col">
                         <div class="card h-100">
                             <img src="img/Captura de tela 2024-09-05 223034.png" class="card-img-top" alt="...">
@@ -123,7 +146,25 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> -->
+
+
+                <?php
+                foreach ($menu as $item) {
+                    ?>
+
+                    <div class="product-card">
+                        <a href="produtos.php?id=<?php echo $item['id'] ?>" class="btn btn-home mb-2">
+                            <img class="img" src="img/miniaturas/<?php echo $item['imagem']; ?>" alt="">
+                            <h2><?php echo $item['nome']; ?></h2>
+                            <p><?php echo $item['categoria']; ?></p>
+                            <p class="price"><?php echo $item['preco']; ?></p>
+                        </a>
+                    </div>
+
+                    <?php
+                }
+                ?>
 
                 <br><br><br><br>
 
@@ -131,7 +172,9 @@
                 <!-- Zap Zap -->
 
                 <div>
-                    <a href="https://wa.me/55(aqui seu numero com ddd | tudo junto)?text=Adorei%20seu%20artigo" style="position:fixed;width:60px;height:60px;bottom:40px;right:40px;background-color:#25d366;color:#FFF;border-radius:50px;text-align:center;font-size:30px;box-shadow: 1px 1px 2px #888 z-index:1000;"target="_blank">
+                    <a href="https://wa.me/55(aqui seu numero com ddd | tudo junto)?text=Adorei%20seu%20artigo"
+                        style="position:fixed;width:60px;height:60px;bottom:40px;right:40px;background-color:#25d366;color:#FFF;border-radius:50px;text-align:center;font-size:30px;box-shadow: 1px 1px 2px #888 z-index:1000;"
+                        target="_blank">
                         <i style="margin-top:16px" class="fa fa-whatsapp"></i>
                     </a>
                 </div>
@@ -145,7 +188,7 @@
         <!-- footer -->
         <footer id="creditos">
             <div class="footer-content">
-                <img src="img/logo-branco.png" alt="" class="logo2">
+                <img src="backend/img/logo-branco.png" alt="" class="logo2">
                 <ul class="footer-menu">
                     <p>Empresas</p>
                     <li class="footer-menu-item">
