@@ -1,8 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Luckiest+Guy&display=swap');
 
 *{
     box-sizing: border-box;
-    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    /* font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif; */
+    font-family: "Luckiest Guy", cursive;
+    font-weight: 400;
+    font-style: normal;
 }
 
 :root{
@@ -229,43 +233,73 @@ header {
     /* CSS Thigas */
 
 
-.product-card {
-    background-color: #2e2b5f;
-    border: 1px solid #3a3772;
-    border-radius: 8px;
-    margin: 10px;
-    width: 300px;
-    padding: 20px;
-    text-align: center;
-    transition: transform 0.2s;
-}
-
-.product-card:hover {
-    transform: scale(1.05);
-}
-
-.product-card img {
-    max-width: 100%;
-    border-radius: 8px;
-}
-
-.product-card h2 {
-    color: #f3f3f3;
-    font-size: 1.5em;
-    margin: 15px 0 10px;
-}
-
-.product-card p {
-    font-size: 1em;
-    color: #ccc;
-    margin: 10px 0;
-}
-
-.product-card .price {
-    font-size: 1.2em;
-    color: #f39c12;
-    margin-bottom: 15px;
-}
+    section.produtos {
+        display: grid;
+        grid-template-columns: repeat(3,1fr);
+        gap: 20px;
+    }
+    
+    .produto-card {
+        background-color: #fff;
+        border: 1px solid #ddd;
+        padding: 20px;
+        border-radius: 10px;
+        transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+        text-align: center;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+    
+    .produto-card:hover {
+        transform: scale(1.05);
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    }
+    
+    .produto-card img {
+        width: 100%;
+        height: auto;
+        border-radius: 10px;
+    }
+    
+    .produto-card h3 {
+        font-size: 1.5em;
+        margin-bottom: 10px;
+        color: #333;
+    }
+    
+    .produto-card p {
+        font-size: 1em;
+        color: #666;
+        margin-bottom: 15px;
+    }
+    
+    .produto-card .preco {
+        font-size: 1.2em;
+        color: #e74c3c;
+        margin-bottom: 15px;
+    }
+    
+    .produto-card button {
+        background-color: #29806a;
+        color: #fff;
+        border: none;
+        padding: 10px 20px;
+        cursor: pointer;
+        border-radius: 5px;
+        font-size: 1em;
+        transition: background-color 0.3s ease;
+    }
+    
+    .produto-card button:hover {
+        background-color: #e74c3c;
+    }
+    
+    footer {
+        background-color: #29806a;
+        color: white;
+        padding: 20px;
+        text-align: center;
+        margin-top: 40px;
+    }
 
 
 

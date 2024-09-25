@@ -104,7 +104,7 @@ try {
 
             <br>
 
-            <div class="container container-conteudo-principal">
+            <div class="d-flex justify-content-center flex-row mb-3 container container-conteudo-principal">
 
                 <!-- <div class="row row-cols-1 row-cols-md-3 g-4">
                     <div class="col">
@@ -149,22 +149,23 @@ try {
                 </div> -->
 
 
-                <?php
-                foreach ($menu as $item) {
+                <section class="produtos">
+
+                    <?php foreach ($menu as $item) { ?>
+
+
+                        <div class="produto-card">
+                            <img src="img/miniaturas/<?php echo $item['imagem'] ?>" alt="" class="credito-card">
+                            <h3><?php echo $item['nome'] ?></h3>
+                            <p><?php echo $item['descricao'] ?></p>
+                            <p class="preco"><?php echo $item['preco'] ?></p>
+                            <a href="produto.php?id=<?php echo $item['id'] ?> "><button>Saiba Mais</button></a>
+                        </div>
+                        <?php
+                    }
+                    ;
                     ?>
-
-                    <div class="product-card">
-                        <a href="produtos.php?id=<?php echo $item['id'] ?>" class="btn btn-home mb-2">
-                            <img class="img" src="img/miniaturas/<?php echo $item['imagem']; ?>" alt="">
-                            <h2><?php echo $item['nome']; ?></h2>
-                            <p><?php echo $item['categoria']; ?></p>
-                            <p class="price"><?php echo $item['preco']; ?></p>
-                        </a>
-                    </div>
-
-                    <?php
-                }
-                ?>
+                </section>
 
                 <br><br><br><br>
 
