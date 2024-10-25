@@ -1,0 +1,175 @@
+
+* {
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: "Orbitron", sans-serif;
+    background-color: #0D021D !important;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    padding: 0 20px; /* Adiciona padding para pequenos dispositivos */
+  }
+  
+  .clerinton {
+    margin-top: 6.125rem;
+  }
+  
+      /* Esconda o input real */
+      .image-upload {
+        display: none;
+      }
+  
+      /* Crie um botão personalizado */
+      .image-upload-label {
+        display: inline-block;
+        padding: 10px 35px;
+        background-color: #4CAF50;
+        color: white;
+        font-size: 16px;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+      }
+  
+      /* Efeito de hover */
+      .image-upload-label:hover {
+        background-color: #45a049;
+      }
+  
+      /* Estilo para o ícone de upload */
+      .image-upload-icon {
+        margin-right: 8px;
+      }
+  
+      /* Alinhamento e espaçamento */
+      .image-upload-container {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+  
+  
+  .post-container {
+    background-color: rgba(80, 24, 170, 0.15);
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    border-radius: 1rem;
+  }
+  
+  h2 {
+    margin-bottom: 20px;
+    font-size: 22px;
+    color: #333;
+  }
+  
+  .form-group {
+    margin-bottom: 15px;
+  }
+  
+  label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #333;
+  }
+  
+  select, textarea, button, .image-upload {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+  }
+  
+  textarea {
+    height: 80px;
+    resize: none;
+  }
+  
+  .media-section {
+    display: flex;
+    align-items: center;
+  }
+  
+  .media-section img {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    margin-right: 10px;
+  }
+  
+  .actions {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+  }
+  
+  .schedule-btn, .publish-btn {
+    width: 48%;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .schedule-btn {
+    background-color: #6c757d;
+  }
+  
+  button:hover, .image-upload:hover {
+    opacity: 0.9;
+  }
+  
+  /* Responsividade */
+  @media only screen and (max-width: 768px) {
+    .actions {
+      flex-direction: column;
+      gap: 10px;
+    }
+  
+    .schedule-btn, .publish-btn {
+      width: 100%;
+    }
+  
+    .media-section img {
+      width: 80px;
+      height: 80px;
+    }
+  
+    textarea {
+      height: 100px;
+    }
+  
+    body {
+      padding: 10px; /* Adiciona padding extra em dispositivos menores */
+    }
+  }
+  
+  @media only screen and (max-width: 480px) {
+    h2 {
+      font-size: 18px;
+    }
+  
+    .post-container {
+      padding: 15px;
+    }
+  
+    select, textarea, button, .image-upload {
+      font-size: 14px;
+      padding: 8px;
+    }
+  
+    .media-section img {
+      width: 70px;
+      height: 70px;
+    }
+  }
+  
