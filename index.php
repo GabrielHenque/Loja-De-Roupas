@@ -3,82 +3,82 @@ session_start();
 
 // Verifica se o carrinho está ativo e conta os itens
 if (isset($_SESSION["carrinho"])) {
-  $qtd_carrinho = count(array_unique($_SESSION["carrinho"]));
+    $qtd_carrinho = count(array_unique($_SESSION["carrinho"]));
 } else {
-  $qtd_carrinho = 0;
+    $qtd_carrinho = 0;
 }
 
 try {
-  // Conexão com o banco de dados
-  include "backend/conexao.php";
+    // Conexão com o banco de dados
+    include "backend/conexao.php";
 
-  // Busca todas as categorias distintas
-  $sql_categorias = "SELECT DISTINCT categoria FROM produtos";
-  $stmt_categorias = $conn->prepare($sql_categorias);
-  $stmt_categorias->execute();
-  $categorias = $stmt_categorias->fetchAll(PDO::FETCH_ASSOC);
+    // Busca todas as categorias distintas
+    $sql_categorias = "SELECT DISTINCT categoria FROM produtos";
+    $stmt_categorias = $conn->prepare($sql_categorias);
+    $stmt_categorias->execute();
+    $categorias = $stmt_categorias->fetchAll(PDO::FETCH_ASSOC);
 
-  // Busca todas as marcas distintas
-  $sql_marcas = "SELECT DISTINCT marca FROM produtos";
-  $stmt_marcas = $conn->prepare($sql_marcas);
-  $stmt_marcas->execute();
-  $marcas = $stmt_marcas->fetchAll(PDO::FETCH_ASSOC);
+    // Busca todas as marcas distintas
+    $sql_marcas = "SELECT DISTINCT marca FROM produtos";
+    $stmt_marcas = $conn->prepare($sql_marcas);
+    $stmt_marcas->execute();
+    $marcas = $stmt_marcas->fetchAll(PDO::FETCH_ASSOC);
 
-  // Inicia a consulta básica para os produtos
-  $sql = "SELECT * FROM produtos WHERE 1=1"; // `1=1` facilita a adição de condições dinâmicas
+    // Inicia a consulta básica para os produtos
+    $sql = "SELECT * FROM produtos WHERE 1=1"; // `1=1` facilita a adição de condições dinâmicas
 
-  // Verifica se há um termo de busca
-  if (isset($_GET['busca']) && !empty($_GET['busca'])) {
-    $busca = "%" . $_GET['busca'] . "%"; // Adiciona coringas para a busca com LIKE
-    $sql .= " AND (nome LIKE :busca OR categoria LIKE :busca)";
-  }
+    // Verifica se há um termo de busca
+    if (isset($_GET['busca']) && !empty($_GET['busca'])) {
+        $busca = "%" . $_GET['busca'] . "%"; // Adiciona coringas para a busca com LIKE
+        $sql .= " AND (nome LIKE :busca OR categoria LIKE :busca)";
+    }
 
-  // Verifica se há um filtro de categoria
-  if (isset($_GET['categoria']) && !empty($_GET['categoria'])) {
-    $categoria = $_GET['categoria'];
-    $sql .= " AND categoria = :categoria";
-  }
+    // Verifica se há um filtro de categoria
+    if (isset($_GET['categoria']) && !empty($_GET['categoria'])) {
+        $categoria = $_GET['categoria'];
+        $sql .= " AND categoria = :categoria";
+    }
 
-  // Verifica se há um filtro de marca
-  if (isset($_GET['marca']) && !empty($_GET['marca'])) {
-    $marca = $_GET['marca'];
-    $sql .= " AND marca = :marca";
-  }
+    // Verifica se há um filtro de marca
+    if (isset($_GET['marca']) && !empty($_GET['marca'])) {
+        $marca = $_GET['marca'];
+        $sql .= " AND marca = :marca";
+    }
 
-  // Verifica se há um filtro de ordenação por preço
-  if (isset($_GET['preco']) && $_GET['preco'] == 'asc') {
-    $sql .= " ORDER BY preco ASC";  // Ordena do menor para o maior
-  } elseif (isset($_GET['preco']) && $_GET['preco'] == 'desc') {
-    $sql .= " ORDER BY preco DESC";  // Ordena do maior para o menor
-  }
+    // Verifica se há um filtro de ordenação por preço
+    if (isset($_GET['preco']) && $_GET['preco'] == 'asc') {
+        $sql .= " ORDER BY preco ASC";  // Ordena do menor para o maior
+    } elseif (isset($_GET['preco']) && $_GET['preco'] == 'desc') {
+        $sql .= " ORDER BY preco DESC";  // Ordena do maior para o menor
+    }
 
-  // Verifica se há um filtro de ordenação alfabética
-  if (isset($_GET['alfabetico']) && $_GET['alfabetico'] == 'az') {
-    $sql .= " ORDER BY nome ASC";  // Ordena de A a Z
-  } elseif (isset($_GET['alfabetico']) && $_GET['alfabetico'] == 'za') {
-    $sql .= " ORDER BY nome DESC";  // Ordena de Z a A
-  }
+    // Verifica se há um filtro de ordenação alfabética
+    if (isset($_GET['alfabetico']) && $_GET['alfabetico'] == 'az') {
+        $sql .= " ORDER BY nome ASC";  // Ordena de A a Z
+    } elseif (isset($_GET['alfabetico']) && $_GET['alfabetico'] == 'za') {
+        $sql .= " ORDER BY nome DESC";  // Ordena de Z a A
+    }
 
-  // Prepara a consulta para produtos
-  $stmt = $conn->prepare($sql);
+    // Prepara a consulta para produtos
+    $stmt = $conn->prepare($sql);
 
-  // Passa os parâmetros da busca, categoria e marca
-  if (isset($busca)) {
-    $stmt->bindParam(':busca', $busca);
-  }
-  if (isset($categoria)) {
-    $stmt->bindParam(':categoria', $categoria);
-  }
-  if (isset($marca)) {
-    $stmt->bindParam(':marca', $marca);
-  }
+    // Passa os parâmetros da busca, categoria e marca
+    if (isset($busca)) {
+        $stmt->bindParam(':busca', $busca);
+    }
+    if (isset($categoria)) {
+        $stmt->bindParam(':categoria', $categoria);
+    }
+    if (isset($marca)) {
+        $stmt->bindParam(':marca', $marca);
+    }
 
-  // Executa a consulta SQL para produtos
-  $stmt->execute();
-  $menu = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    // Executa a consulta SQL para produtos
+    $stmt->execute();
+    $menu = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 } catch (PDOException $err) {
-  echo "Erro: " . $err->getMessage();
+    echo "Erro: " . $err->getMessage();
 }
 ?>
 
@@ -167,7 +167,7 @@ try {
 
             <br>
 
-            <div class="d-flex justify-content-center flex-row mb-3 container container-conteudo-principal">
+            <!-- <div class="d-flex justify-content-center flex-row mb-3 container container-conteudo-principal">
 
                 <div class="row row-cols-1 row-cols-md-3 g-4">
                     <div class="col">
@@ -179,8 +179,26 @@ try {
                                     lead-in to additional content. This content is a little bit longer.</p>
                             </div>
                         </div>
-                    </div>
-                    <!-- <div class="col">
+                    </div> -->
+
+            <div class="row row-cols-1 row-cols-md-3 g-4">
+                <?php
+                foreach ($menu as $item) {
+                    ?>
+                    <div class="col">
+                        <div class="card h-100">
+                            <img class="img card-img-top" src="img/originais/<?php echo $item['imagem']; ?>" alt="">
+                            <div class="card-body">
+                                <h5 class="card-title"><?php echo $item['nome']; ?></h5>
+                                <p class="card-text"><?php echo $item['categoria']; ?></p>
+                                <p class="price card-title"><?php echo $item['preco']; ?></p>
+                            </div>
+                        </div>
+                        <?php
+                }
+                ; ?>
+                </div>
+                <!-- <div class="col">
                         <div class="card h-100">
                             <img src="img/CALÇA DE BOLSO UTILITÁRIA ZARA MAN.webp" class="card-img-top" alt="...">
                             <div class="card-body">
@@ -209,23 +227,23 @@ try {
                             </div>
                         </div>
                     </div> -->
-                </div>
+            </div>
 
 
-                
-
-                <br><br><br><br>
 
 
-                <!-- Zap Zap -->
+            <br><br><br><br>
 
-                <div>
-                    <a href="https://wa.me/55(aqui seu numero com ddd | tudo junto)?text=Adorei%20seu%20artigo"
-                        style="position:fixed;width:60px;height:60px;bottom:40px;right:40px;background-color:#25d366;color:#FFF;border-radius:50px;text-align:center;font-size:30px;box-shadow: 1px 1px 2px #888 z-index:1000;"
-                        target="_blank">
-                        <i style="margin-top:16px" class="fa fa-whatsapp"></i>
-                    </a>
-                </div>
+
+            <!-- Zap Zap -->
+
+            <div>
+                <a href="https://wa.me/55(aqui seu numero com ddd | tudo junto)?text=Adorei%20seu%20artigo"
+                    style="position:fixed;width:60px;height:60px;bottom:40px;right:40px;background-color:#25d366;color:#FFF;border-radius:50px;text-align:center;font-size:30px;box-shadow: 1px 1px 2px #888 z-index:1000;"
+                    target="_blank">
+                    <i style="margin-top:16px" class="fa fa-whatsapp"></i>
+                </a>
+            </div>
 
         </main>
 
