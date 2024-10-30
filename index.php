@@ -189,7 +189,7 @@ try {
                             ?>
                             
                             <div class="col">
-                                <a href="https://www.youtube.com">
+                                <a href="https://www.youtube.com" class="text-black text-decoration-none">
                                 <div class="card h-100">
                                     <img src="img/miniaturas/<?php echo $item['imagem'] ?>" alt="Imagem do Produto">
                                     <div class="card-body">
