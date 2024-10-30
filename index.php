@@ -113,7 +113,7 @@ try {
 
                 <ul id="menu">
                     <li><a href="#">######</a></li>
-                    <li><a href="#">$$$$$$</a></li>
+                    <li><a href="index_funcao.php"> Funções </a></li>
                     <li><a href="#">@@@@@@</a></li>
 
 
@@ -181,24 +181,32 @@ try {
                         </div>
                     </div> -->
 
-            <div class="row row-cols-1 row-cols-md-3 g-4">
-                <?php
-                foreach ($menu as $item) {
-                    ?>
-                    <div class="col">
-                        <div class="card h-100">
-                            <img class="img card-img-top" src="img/originais/<?php echo $item['imagem']; ?>" alt="">
-                            <div class="card-body">
-                                <h5 class="card-title"><?php echo $item['nome']; ?></h5>
-                                <p class="card-text"><?php echo $item['categoria']; ?></p>
-                                <p class="price card-title"><?php echo $item['preco']; ?></p>
-                            </div>
-                        </div>
+                    <div class="container text-center pt-5 mt-5">
+                    <div class="row row-cols-5 g-2">
+
                         <?php
-                }
-                ; ?>
+                        foreach ($menu as $item):
+                            ?>
+                            
+                            <div class="col">
+                                <a href="https://www.youtube.com">
+                                <div class="card h-100">
+                                    <img src="img/miniaturas/<?php echo $item['imagem'] ?>" alt="Imagem do Produto">
+                                    <div class="card-body">
+                                        <h5 class="card-title"><?php echo $item['nome'] ?></h5>
+                                        <p class="card-text"><?php echo $item['categoria'] ?></p>
+                                        <p class="card-text">R$ <?php echo $item['preco'] ?></p>
+                                        <a href="#" class="btn btn-primary">Comprar</a>
+                                    </div>
+                                </div>
+                            </a>
+                            </div>
+                            <?php
+                        endforeach;
+                        ?>
+                    </div>
                 </div>
-                <!-- <div class="col">
+            <!-- <div class="col">
                         <div class="card h-100">
                             <img src="img/CALÇA DE BOLSO UTILITÁRIA ZARA MAN.webp" class="card-img-top" alt="...">
                             <div class="card-body">
@@ -227,87 +235,87 @@ try {
                             </div>
                         </div>
                     </div> -->
+
+
+    </div>
+
+
+    <br><br><br><br>
+
+
+    <!-- Zap Zap -->
+
+    <div>
+        <a href="https://wa.me/55(aqui seu numero com ddd | tudo junto)?text=Adorei%20seu%20artigo"
+            style="position:fixed;width:60px;height:60px;bottom:40px;right:40px;background-color:#25d366;color:#FFF;border-radius:50px;text-align:center;font-size:30px;box-shadow: 1px 1px 2px #888 z-index:1000;"
+            target="_blank">
+            <i style="margin-top:16px" class="fa fa-whatsapp"></i>
+        </a>
+    </div>
+
+    </main>
+
+
+    <!-- REFAZER FOOTER -->
+
+
+    <!-- footer -->
+    <footer id="creditos">
+        <div class="footer-content">
+            <img src="backend/img/logo-branco.png" alt="" class="logo2">
+            <ul class="footer-menu">
+                <p>Empresas</p>
+                <li class="footer-menu-item">
+                    Sobre
+                </li>
+                <li class="footer-menu-item">
+                    Empresas
+                </li>
+                <li class="footer-menu-item">
+                    For the License
+                </li>
+            </ul>
+
+            <ul class="footer-menu">
+                <p>Comunidades</p>
+
+                <li class="footer-menu-item">
+                    Desenvolvedores
+                </li>
+                <li class="footer-menu-item">
+                    Marcas
+                </li>
+                </li>
+                <li class="footer-menu-item">
+                    Investidores
+                </li>
+                <li class="footer-menu-item">
+                    Fornecedores
+                </li>
+            </ul>
+
+            <ul class="footer-menu">
+                <p>Links úteis</p>
+                <li class="footer-menu-item">
+                    Ajuda
+                </li>
+                <li class="footer-menu-item">
+                    DROP Chat Bot
+                </li>
+                <li class="footer-menu-item">
+                    Contato Suporte
+                </li>
+            </ul>
+
+            <div class="socials">
+                <i class="fa-brands fa-instagram"></i>
+                <i class="fa-brands fa-x-twitter"></i>
+                <i class="fa-brands fa-facebook"></i>
             </div>
 
+        </div>
 
-
-
-            <br><br><br><br>
-
-
-            <!-- Zap Zap -->
-
-            <div>
-                <a href="https://wa.me/55(aqui seu numero com ddd | tudo junto)?text=Adorei%20seu%20artigo"
-                    style="position:fixed;width:60px;height:60px;bottom:40px;right:40px;background-color:#25d366;color:#FFF;border-radius:50px;text-align:center;font-size:30px;box-shadow: 1px 1px 2px #888 z-index:1000;"
-                    target="_blank">
-                    <i style="margin-top:16px" class="fa fa-whatsapp"></i>
-                </a>
-            </div>
-
-        </main>
-
-
-        <!-- REFAZER FOOTER -->
-
-
-        <!-- footer -->
-        <footer id="creditos">
-            <div class="footer-content">
-                <img src="backend/img/logo-branco.png" alt="" class="logo2">
-                <ul class="footer-menu">
-                    <p>Empresas</p>
-                    <li class="footer-menu-item">
-                        Sobre
-                    </li>
-                    <li class="footer-menu-item">
-                        Empresas
-                    </li>
-                    <li class="footer-menu-item">
-                        For the License
-                    </li>
-                </ul>
-
-                <ul class="footer-menu">
-                    <p>Comunidades</p>
-
-                    <li class="footer-menu-item">
-                        Desenvolvedores
-                    </li>
-                    <li class="footer-menu-item">
-                        Marcas
-                    </li>
-                    </li>
-                    <li class="footer-menu-item">
-                        Investidores
-                    </li>
-                    <li class="footer-menu-item">
-                        Fornecedores
-                    </li>
-                </ul>
-
-                <ul class="footer-menu">
-                    <p>Links úteis</p>
-                    <li class="footer-menu-item">
-                        Ajuda
-                    </li>
-                    <li class="footer-menu-item">
-                        DROP Chat Bot
-                    </li>
-                    <li class="footer-menu-item">
-                        Contato Suporte
-                    </li>
-                </ul>
-
-                <div class="socials">
-                    <i class="fa-brands fa-instagram"></i>
-                    <i class="fa-brands fa-x-twitter"></i>
-                    <i class="fa-brands fa-facebook"></i>
-                </div>
-
-            </div>
-
-        </footer>
+    </footer>
 
     </div>
 
