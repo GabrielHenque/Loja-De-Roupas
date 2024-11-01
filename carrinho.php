@@ -1,149 +1,123 @@
 <?php
+include 'php/funcoes.php';
+include 'backend/conexao.php';
 
-// Função q limpa o carrinho
-
-if ($_POST['limparCarrinho']) {
-    unset($_SESSION['carrinho']);
+// Adicionar produto ao carrinho com quantidade padrão de 1 (ou o valor enviado)
+if (isset($_POST['id_produto'])) {
+    $quantidade = isset($_POST['quantidade']) ? intval($_POST['quantidade']) : 1;
+    adicionarAoCarrinho($_POST['id_produto'], $quantidade);
 }
 
-// Inicia a sessão se ainda não foi iniciada
-
-if (session_status() === PHP_SESSION_NONE) {
-    session_start();
+// Verificar se o botão de limpar o carrinho foi acionado
+if (isset($_POST['limparCarrinho']) && $_POST['limparCarrinho'] == 'true') {
+    limparCarrinho();
 }
 
-if (!isset($_SESSION['carrinho'])) {
-    $_SESSION['carrinho'] = array();
+// Obter os IDs dos produtos e quantidades no carrinho
+$itensCarrinho = obterItensCarrinho();
+$subtotal = 0;
+$menu = array();
 
+if (!empty($itensCarrinho)) {
+    $ids = implode(",", array_keys($itensCarrinho));
+    $sql = "SELECT * FROM produtos WHERE id IN ($ids)";
+    $stmt = $conn->prepare($sql);
+    $stmt->execute();
+    $menu = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    $subtotal = calcularSubtotal($conn);
 }
-
-$produto = $_POST['id_produto'];
-
-// adicionar o produto ao carrinho
-$_SESSION['carrinho'][] = $produto;
-
-// Separa os ids por virgula, transforma o array em variavel em formato de lista
-// Ex: 6,8
-$ids = implode(",", $_SESSION['carrinho']);
-
-if (!empty($ids)) {
-    try {
-
-        $quantidade = 1;
-
-        include "backend/conexao.php";
-
-        $sql = "SELECT * FROM produtos WHERE id IN ($ids)";
-
-        $stmt = $conn->prepare($sql);
-
-        // $stmt->bindParam(':id',$id);
-
-        $stmt->execute();
-
-        $menu = $stmt->fetchAll((PDO::FETCH_ASSOC));
-    } catch (PDOException $err) {
-        echo "Erro" . $err->getMessage();
-    }
-
-}
-
 ?>
-
-
-
-
 
 <!DOCTYPE html>
 <html lang="pt-br">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Carrinho de Compras</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
-        integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="carrinho.css">
-    
-</head>
 
+    <?php include "php/links.php"; ?>
+
+    <link rel="stylesheet" href="css/carrinho.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+          integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+          crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
 <body>
 
-    <header>
-        <h1>Loja de Produtos</h1>
-    </header>
+<header>
+    <h1>Loja de Produtos</h1>
+</header>
 
-    <main class="cart-container">
-        <div class="cart-steps">
-            <span class="step active">1. Carrinho</span>
-            <span class="step">2. Identificação</span>
-            <span class="step">3. Pagamento</span>
-        </div>
+<main class="cart-container">
+    <div class="cart-steps">
+        <span class="step active">1. Carrinho</span>
+        <span class="step">2. Identificação</span>
+        <span class="step">3. Pagamento</span>
+    </div>
 
-        <section class="cart-items">
-            <h2>Seu Carrinho</h2>
-            <?php
-                if(isset($dados)!=null){
+    <section class="cart-items">
+        <h2>Seu Carrinho</h2>
+        <?php if (!empty($menu)) { ?>
+            <?php foreach ($menu as $item) { 
+                $id = $item['id'];
+                $quantidade = $itensCarrinho[$id];
+                $precoTotal = $item['preco'] * $quantidade;
             ?>
-            <?php
-            foreach ($menu as $item) {
-                ?>
                 <div class="cart-item">
                     <div class="product-image">
-                        <img id="img" class="img" src="img/miniaturas/<?php echo $item['imagem']; ?>" alt="">
+                        <img src="img/miniaturas/<?php echo $item['imagem']; ?>" alt="<?php echo $item['nome']; ?>">
                     </div>
                     <div class="product-details">
                         <p class="product-name"><?php echo $item['nome']; ?></p>
                         <p>Cor: <?php echo $item['cor']; ?></p>
-                        <p>Tmanho: <?php echo $item['tamanho']; ?></p>
+                        <p>Tamanho: <?php echo $item['tamanho']; ?></p>
                     </div>
-                    <form action="" class="">
+                    <form action="carrinho.php" method="post" class="product-quantity-form">
+                        <input type="hidden" name="id_produto" value="<?php echo $id; ?>">
                         <div class="product-quantity">
-                            <button class="btn-decrement">-</button>
-                            <input type="text" value="1" class="quantity-input">
-                            <button class="btn-increment">+</button>
+                            <button type="submit" name="quantidade" value="<?php echo $quantidade - 1; ?>" class="btn-decrement">-</button>
+                            <input type="text" name="quantidade" value="<?php echo $quantidade; ?>" class="quantity-input" readonly>
+                            <button type="submit" name="quantidade" value="<?php echo $quantidade + 1; ?>" class="btn-increment">+</button>
                         </div>
-                        <div class="product-price">
-                            <p class="unit-price"><?php echo $item['preco']; ?></p>
-                        </div>
-                        <form action="carrinho.php" method="post">
-                            <div class="remove-item">
-                                <button class="btn-remove" type="submit" name="limparCarrinho">Excluir <i
-                                        class="fa-solid fa-trash"></i> </button>
-                            </div>
-                        </form>
+                    </form>
+                    <div class="product-price">
+                        <p class="unit-price">R$ <?php echo number_format($precoTotal, 2, ',', '.'); ?></p>
+                    </div>
+                    <form action="carrinho.php" method="post">
+                        <input type="hidden" name="limparCarrinho" value="true">
+                        <button type="submit" class="btn-remove">Excluir <i class="fa-solid fa-trash"></i></button>
                     </form>
                 </div>
-                <?php
-                }
+            <?php } ?>
+            <!-- Botão de Limpar Carrinho -->
+            <form action="carrinho.php" method="post" class="clear-cart-form">
+                <input type="hidden" name="limparCarrinho" value="true">
+                <button type="submit" class="btn-clear-cart">Limpar Carrinho</button>
+            </form>
+        <?php } else { ?>
+            <p class="empty-cart">Carrinho Vazio!</p>
+        <?php } ?>
 
-            }
+        <div class="subtotal">
+            <p>Subtotal:</p>
+            <p class="subtotal-value">R$ <?php echo number_format($subtotal, 2, ',', '.'); ?></p>
+        </div>
+    </section>
+    <section class="cart-total">
+        <h2>Resumo</h2>
+        <div class="summary-details">
+            <p>Valor dos produtos: <span>R$ <?php echo number_format($subtotal, 2, ',', '.'); ?></span></p>
+            <p>Frete: <span>A calcular</span></p>
+            <p>Descontos: <span>- R$ 00,00</span></p>
+            <p class="total">Total da compra: <span>R$ <?php echo number_format($subtotal, 2, ',', '.'); ?></span></p>
+        </div>
+        <button class="btn-continue">Continuar</button>
+    </section>
+</main>
 
-            echo "<h2 class='justify-content-center aling-items-center'>Carrinho Vazio!!</h2>";
-             ?>
-
-            <div class="subtotal">
-                <p>Subtotal:</p>
-                <p class="subtotal-value">R$ 129,99</p>
-            </div>
-        </section>
-        <section class="cart-total">
-            <h2>Resumo</h2>
-            <div class="summary-details">
-                <p>Valor dos produtos: <span>R$ 129,99</span></p>
-                <p>Frete: <span>A calcular</span></p>
-                <p>Descontos: <span>- R$ 00,00</span></p>
-                <p class="total">Total da compra: <span>R$ 129,99</span></p>
-            </div>
-            <button class="btn-continue">Continuar</button>
-        </section>
-    </main>
-
-    <footer class="cart-footer">
-        <p>© 2024 Loja de Produtos. Todos os direitos reservados.</p>
-    </footer>
+<footer class="cart-footer">
+    <p>© 2024 Loja de Produtos. Todos os direitos reservados.</p>
+</footer>
 
 </body>
-
 </html>
