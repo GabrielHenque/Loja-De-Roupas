@@ -26,6 +26,8 @@ $categorias = listar($conn, 'tb_categoria');
 
     <link rel="stylesheet" href="css/base.css">
     <link rel="stylesheet" href="css/index_funcao.css">
+    <link rel="shortcut icon" href="logo-branco.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
 
     <title>Loja Função</title>
 </head>

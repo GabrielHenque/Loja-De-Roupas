@@ -97,7 +97,7 @@ try {
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="css/home.css">
     <!-- icon -->
-    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="logo-branco.ico" type="image/x-icon">
 
     <title>Loja de Roupas</title>
 </head>

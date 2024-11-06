@@ -69,7 +69,7 @@ CREATE TABLE IF NOT EXISTS `tb_carrinho` (
   CONSTRAINT `FK_tb_carrinho_produtos` FOREIGN KEY (`id_produto`) REFERENCES `produtos` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Copiando dados para a tabela db_loja.tb_carrinho: ~1 rows (aproximadamente)
+-- Copiando dados para a tabela db_loja.tb_carrinho: ~0 rows (aproximadamente)
 INSERT INTO `tb_carrinho` (`id`, `id_session`, `id_produto`, `quant`, `data`) VALUES
 	(1, 'h6nn8iuqbib9ueu4pg85pe35hh', 4, 1, '2024-11-05 22:28:24');
 
@@ -81,7 +81,7 @@ CREATE TABLE IF NOT EXISTS `tb_categoria` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Copiando dados para a tabela db_loja.tb_categoria: ~1 rows (aproximadamente)
+-- Copiando dados para a tabela db_loja.tb_categoria: ~2 rows (aproximadamente)
 INSERT INTO `tb_categoria` (`id`, `categoria`, `data_cad`) VALUES
 	(3, 'seu jorge', '2024-10-22 21:32:22');
 

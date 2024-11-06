@@ -5,6 +5,7 @@
     <!--     CSS     -->
 
 <!-- Menu.css -->
+<link rel="shortcut icon" href="logo-branco.ico" type="image/x-icon">
 <link rel="stylesheet" href="assets/css/menu.css">
 
 

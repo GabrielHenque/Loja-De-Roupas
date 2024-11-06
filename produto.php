@@ -39,7 +39,7 @@
                 <p><?php echo $produto['descricao']; ?></p>
 
                 <form action="carrinho.php" method="POST">
-                    <button class="buy-button" name="id_produto" value="<?php echo $produto['id']; ?>">Comprar Agora</button>
+                    <button class="buy-button" type="submit" name="id_produto" value="<?php echo $produto['id']; ?>">Comprar Agora</button>
                 </form>
 
                 <br>
