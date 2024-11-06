@@ -1,6 +1,12 @@
 <?php
 session_start();
 
+include "backend/conexao.php";
+include "php/funcoes.php";
+
+$produtos = listar($conn, 'produtos');
+$categorias = listar($conn, 'tb_categoria');
+
 // Verifica se o carrinho está ativo e conta os itens
 if (isset($_SESSION["carrinho"])) {
     $qtd_carrinho = count(array_unique($_SESSION["carrinho"]));
@@ -181,31 +187,29 @@ try {
                         </div>
                     </div> -->
 
-                    <div class="container text-center pt-5 mt-5">
-                    <div class="row row-cols-5 g-2">
+            <div class="container text-center pt-5 mt-5">
+                <div class="row row-cols-5 g-2">
 
-                        <?php
-                        foreach ($menu as $item):
-                            ?>
-                            
-                            <div class="col">
-                                <a href="https://www.youtube.com" class="text-black text-decoration-none">
-                                <div class="card h-100">
-                                    <img src="img/miniaturas/<?php echo $item['imagem'] ?>" alt="Imagem do Produto">
-                                    <div class="card-body">
-                                        <h5 class="card-title"><?php echo $item['nome'] ?></h5>
-                                        <p class="card-text"><?php echo $item['categoria'] ?></p>
-                                        <p class="card-text">R$ <?php echo $item['preco'] ?></p>
-                                        <a href="#" class="btn btn-primary">Comprar</a>
-                                    </div>
-                                </div>
-                            </a>
-                            </div>
-                            <?php
-                        endforeach;
+                    <?php
+                    foreach ($produtos as $produto):
                         ?>
-                    </div>
+                        <div class="col">
+                            <div class="card teste">
+                                <img src="img/miniaturas/<?php echo $produto['imagem'] ?>" alt="Imagem do produto">
+                                <div class="card-body">
+                                    <h5 class="card-title"><?php echo $produto['nome'] ?></h5>
+                                    <p class="card-text"><?php echo $produto['categoria'] ?></p>
+                                    <p class="card-text">R$ <?php echo $produto['preco'] ?></p>
+                                    <a href="produto.php?id=<?php echo $produto['id']; ?>"
+                                        class="btn btn-primary">Comprar</a>
+                                </div>
+                            </div>
+                        </div>
+                        <?php
+                    endforeach;
+                    ?>
                 </div>
+            </div>
             <!-- <div class="col">
                         <div class="card h-100">
                             <img src="img/CALÇA DE BOLSO UTILITÁRIA ZARA MAN.webp" class="card-img-top" alt="...">

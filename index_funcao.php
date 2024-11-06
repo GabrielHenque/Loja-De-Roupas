@@ -48,7 +48,6 @@ $categorias = listar($conn, 'tb_categoria');
                         <li><a href="index_funcao.php"> Funções </a></li>
                         <li><a href="#">@@@@@@</a></li>
 
-
                     </ul>
 
                 </nav>
