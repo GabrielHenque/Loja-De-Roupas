@@ -1,5 +1,6 @@
 <?php
 include 'php/funcoes.php';
+include 'php/funcao_carrinho.php';
 include 'backend/conexao.php';
 
 //   Carrinho
@@ -15,31 +16,18 @@ if(isset($_POST['id_produto'])){
     addCarrinho($conn,$id_sessao,$id_produto,1);
 }
 
-$produtos = listarCarrinho($conn,$id_sessao);
-
-function addCarrinho($conn,$id_sessao,$id_produto,$quantidade){
-        $sql = "INSERT INTO tb_carrinho (id_session,id_produto,quant) VALUES
-        (:id_sessao,:id_produto,:quantidade)";
-        $stmt = $conn->prepare($sql);
-        $stmt->bindParam(':id_sessao',$id_sessao);
-        $stmt->bindParam(':id_produto',$id_produto);
-        $stmt->bindParam(':quantidade',$quantidade);
-        $stmt->execute();
+if (isset($_POST['id_carrinho'])) {
+    
+    $id_carrinho = $_POST['id_carrinho'];
+    deletarProdutoCarrinho($conn,$id_carrinho);
 }
 
-function listarCarrinho($conn, $id_sessao){
-    $sql = "SELECT 
-                produtos.*,
-                tb_carrinho.quant
-            FROM tb_carrinho
-            INNER JOIN produtos ON produtos.id = tb_carrinho.id_produto
-            WHERE id_session =:id_sessao
-            ";
-    $stmt = $conn->prepare($sql);
-    $stmt->bindParam(':id_sessao',$id_sessao);
-    $stmt->execute();
-    return $stmt->fetchAll(PDO::FETCH_ASSOC);
-    }
+if (isset($_POST['limparCarrinho'])) {
+    limparCarrinho($conn,$id_sessao);
+}
+
+// Executa a funcao e armazena o resultado do carrinho
+$produtos = listarCarrinho($conn,$id_sessao);
 
 ?>
 
@@ -74,9 +62,22 @@ function listarCarrinho($conn, $id_sessao){
 
         <section class="cart-items">
             <h2>Seu Carrinho</h2>
-            <?php if (!empty($produtos)) { ?>
-                <?php foreach ($produtos as $produto) {
-                    ?>
+            <?php
+
+                $valor_frete = 20.00;
+
+                $valor_produtos = 0.00;
+            
+                if (!empty($produtos)) { ?>
+
+                <?php
+
+                    foreach ($produtos as $produto) {
+                    $valor_produtos += $produto['preco'];
+
+                    
+
+                ?>
                     <div class="cart-item">
                         <div class="product-image">
                             <img src="img/miniaturas/<?php echo $produto['imagem']; ?>" alt="<?php echo $produto['nome']; ?>">
@@ -101,14 +102,14 @@ function listarCarrinho($conn, $id_sessao){
                             <p class="unit-price">R$ <?php echo number_format($precoTotal, 2, ',', '.'); ?></p>
                         </div>
                         <form action="carrinho.php" method="post">
-                            <input type="hidden" name="limparCarrinho" value="true">
+                            <input type="hidden" name="id_carrinho" value="<?php echo $produto['id_carrinho']; ?>">
                             <button type="submit" class="btn-remove">Excluir <i class="fa-solid fa-trash"></i></button>
                         </form>
                     </div>
                 <?php } ?>
                 <!-- Botão de Limpar Carrinho -->
                 <form action="carrinho.php" method="post" class="clear-cart-form">
-                    <input type="hidden" name="limparCarrinho" value="true">
+                    <input type="hidden" name="limparCarrinho">
                     <button type="submit" class="btn-clear-cart">Limpar Carrinho</button>
                 </form>
             <?php } else { ?>
@@ -133,10 +134,10 @@ function listarCarrinho($conn, $id_sessao){
         <section class="cart-total">
             <h2>Resumo</h2>
             <div class="summary-details">
-                <p>Valor dos produtos: <span>R$ <?php ; ?></span></p>
-                <p>Frete: <span>A calcular</span></p>
+                <p>Valor dos produtos: <span>R$ <?php echo $valor_produtos; ?></span></p>
+                <p>Frete: <span>R$ <?php echo $valor_frete; ?></span></p>
                 <p>Descontos: <span>- R$ 00,00</span></p>
-                <p class="total">Total da compra: <span>R$ <?php ; ?></span>
+                <p class="total">Total da compra: <span> R$ <?php echo $valor_produtos + $valor_frete; ?></span>
                 </p>
             </div>
             <button class="btn-continue">Continuar</button>

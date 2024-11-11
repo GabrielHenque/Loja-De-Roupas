@@ -191,10 +191,10 @@ try {
                 <div class="row row-cols-5 g-2">
 
                     <?php
-                    foreach ($produtos as $produto):
-                        ?>
+                        foreach ($produtos as $produto):
+                    ?>
                         <div class="col">
-                            <div class="card teste">
+                            <div class="card">
                                 <img src="img/miniaturas/<?php echo $produto['imagem'] ?>" alt="Imagem do produto">
                                 <div class="card-body">
                                     <h5 class="card-title"><?php echo $produto['nome'] ?></h5>
