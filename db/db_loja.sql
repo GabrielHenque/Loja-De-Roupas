@@ -67,11 +67,9 @@ CREATE TABLE IF NOT EXISTS `tb_carrinho` (
   PRIMARY KEY (`id`),
   KEY `FK_tb_carrinho_produtos` (`id_produto`),
   CONSTRAINT `FK_tb_carrinho_produtos` FOREIGN KEY (`id_produto`) REFERENCES `produtos` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Copiando dados para a tabela db_loja.tb_carrinho: ~1 rows (aproximadamente)
-INSERT INTO `tb_carrinho` (`id`, `id_session`, `id_produto`, `quant`, `data`) VALUES
-	(1, 'h6nn8iuqbib9ueu4pg85pe35hh', 4, 1, '2024-11-05 22:28:24');
+-- Copiando dados para a tabela db_loja.tb_carrinho: ~0 rows (aproximadamente)
 
 -- Copiando estrutura para tabela db_loja.tb_categoria
 CREATE TABLE IF NOT EXISTS `tb_categoria` (
@@ -84,6 +82,18 @@ CREATE TABLE IF NOT EXISTS `tb_categoria` (
 -- Copiando dados para a tabela db_loja.tb_categoria: ~1 rows (aproximadamente)
 INSERT INTO `tb_categoria` (`id`, `categoria`, `data_cad`) VALUES
 	(3, 'seu jorge', '2024-10-22 21:32:22');
+
+-- Copiando estrutura para tabela db_loja.usuarios
+CREATE TABLE IF NOT EXISTS `usuarios` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `nome` varchar(50) NOT NULL,
+  `email` varchar(80) NOT NULL,
+  `senha` varchar(50) NOT NULL,
+  `data_cad` datetime NOT NULL DEFAULT current_timestamp(),
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- Copiando dados para a tabela db_loja.usuarios: ~0 rows (aproximadamente)
 
 /*!40103 SET TIME_ZONE=IFNULL(@OLD_TIME_ZONE, 'system') */;
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
