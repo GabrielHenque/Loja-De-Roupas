@@ -235,8 +235,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   <main class="form-signin w-100 m-auto">
     <form>
       <div class="text-center p-2">
-        <img src="logo-preto.ico" alt="">
-        <h1 class="h3 mb-3 fw-normal">Loja - Drop</h1>
+        <img class="w-50 mb-3" src="logo-preto.ico" alt="">
+        <!-- <h1 class="h3 mb-3 fw-normal">Loja - Drop</h1> -->
       </div>
 
 
@@ -256,6 +256,29 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       </div>
       <p class="mt-5 mb-3 text-body-secondary">&copy; 2017–2024</p>
     </form>
+
+    <!-- <div id="login">
+            <form action="php/login.php" method="post" >
+            <img src="logo-preto.ico" alt="">
+
+                <div>
+                    <label for="email">E-mail</label>
+                    <input type="email" name="email" id="email" required>
+                </div>
+
+                <div>
+                    <label for="senha">Senha</label>
+                    <input type="password" name="senha" id="senha" required>
+                </div>
+
+                <button type="submit" class="btn-entrar" role="button" >Entrar</button>
+
+                <div>
+                    <a href="recuperar-senha.html" class="recuperar">Recuperar Senha</a>
+                </div>
+                
+            </form>    
+        </div> -->
   </main>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"

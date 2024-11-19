@@ -225,7 +225,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <main class="form-signin w-100 m-auto">
         <form action="cadastrar.php" method="post">
             <div class="text-center p-2">
-                <img src="logo-preto.ico" alt="Logo Drop">
+                <img class="w-50" src="logo-preto.ico" alt="Logo Drop">
                 <h1 class="h3 mb-3 fw-normal">Loja - Drop</h1>
             </div>
 
