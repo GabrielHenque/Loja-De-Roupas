@@ -240,7 +240,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       </div>
 
 
-      <div class="form-floating">
+      <div class="form-floating">  
         <input type="email" class="form-control" id="email" name="email" placeholder="email@example.com">
         <label for="email">Email</label>
       </div>

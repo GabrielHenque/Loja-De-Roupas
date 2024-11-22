@@ -29,6 +29,8 @@ if (isset($_POST['limparCarrinho'])) {
 // Executa a funcao e armazena o resultado do carrinho
 $produtos = listarCarrinho($conn,$id_sessao);
 
+$quantidade = 0
+
 ?>
 
 <!DOCTYPE html>
