@@ -79,7 +79,7 @@ CREATE TABLE IF NOT EXISTS `tb_categoria` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Copiando dados para a tabela db_loja.tb_categoria: ~1 rows (aproximadamente)
+-- Copiando dados para a tabela db_loja.tb_categoria: ~2 rows (aproximadamente)
 INSERT INTO `tb_categoria` (`id`, `categoria`, `data_cad`) VALUES
 	(3, 'seu jorge', '2024-10-22 21:32:22');
 
@@ -91,7 +91,7 @@ CREATE TABLE IF NOT EXISTS `usuarios` (
   `senha` varchar(50) NOT NULL,
   `data_cad` datetime NOT NULL DEFAULT current_timestamp(),
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- Copiando dados para a tabela db_loja.usuarios: ~0 rows (aproximadamente)
 
